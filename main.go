@@ -1,10 +1,13 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
+	"fmt"
 	"log"
 	"net"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/mbndr/figlet4go"
 )
 
 func IPHandler(w http.ResponseWriter, r *http.Request) {
@@ -58,6 +61,16 @@ func main() {
 	r.HandleFunc("/health", HealthHandler)
 	r.HandleFunc("/", IPHandler)
 	port := ":8080"
+
+	// Figlet ASCII banner
+	ascii := figlet4go.NewAsciiRender()
+	renderOpts := figlet4go.NewRenderOptions()
+	renderOpts.FontColor = []figlet4go.Color{
+		figlet4go.ColorCyan,
+	}
+	renderStr, _ := ascii.RenderOpts("whatip", renderOpts)
+	fmt.Print(renderStr)
+	fmt.Println("----------------")
 
 	// Write to console
 	log.Printf("🔵 [INFO] whatip running on port %s\n", port)

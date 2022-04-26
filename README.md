@@ -13,6 +13,16 @@ ARCH=amd64
 wget -qO- https://github.com/oschvr/whatip/releases/download/$VERSION/whatip-$VERSION-$OS-$ARCH.tar.gz | tar -xzvf - -C /usr/local/bin
 
 mv /usr/local/bin/whatip-$VERSION-$OS-$ARCH /usr/local/bin/whatip
+
+whatip
+             _               _     _         
+ __      __ | |__     __ _  | |_  (_)  _ __  
+ \ \ /\ / / | '_ \   / _` | | __| | | | '_ \ 
+  \ V  V /  | | | | | (_| | | |_  | | | |_) |
+   \_/\_/   |_| |_|  \__,_|  \__| |_| | .__/ 
+                                      |_|    
+----------------
+2022/04/25 22:35:33 🔵 [INFO] whatip running on port :8080
 ```
 
 ## Contributing
