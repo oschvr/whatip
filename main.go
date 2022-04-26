@@ -43,13 +43,6 @@ func IPHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(realIp))
 }
 
-func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
-	log.Printf("🔴 [ERROR] Not found")
-
-	// Write header and 404 response
-	w.WriteHeader(http.StatusNotFound)
-}
-
 func HealthHandler(w http.ResponseWriter, r *http.Request) {
 	//Console log info
 	log.Println("🔵 [INFO] whatip is healthy ✅")
