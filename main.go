@@ -16,20 +16,20 @@ func IPHandler(w http.ResponseWriter, r *http.Request) {
 	var realIp string
 
 	// Get IP from headers or Request obj
-
 	// Attempt to get it from X-Forwarded-For header
 	if r.Header.Get("X-Forwarded-For") != "" {
 		realIp = r.Header.Get("X-Forwarded-For")
-		log.Printf("🔵 [INFO] X-Forwarded-For %s \n", realIp)
+		log.Printf("🔵 [INFO] x %s \n", realIp)
 
 		// Attempt X-Real-Ip header
 	} else if r.Header.Get("X-Real-Ip") != "" {
-		realIp = string(net.ParseIP(r.Header.Get("X-Real-Ip")))
+		realIp = r.Header.Get("X-Real-Ip")
 		log.Printf("🔵 [INFO] X-Real-Ip %s \n", realIp)
 
 		// Use r.RemoteAddr to get it if none of above worked
 	} else {
 		ip, _, err := net.SplitHostPort(r.RemoteAddr)
+		fmt.Printf("RemoteAddr: %s \n", ip)
 		if err != nil {
 			log.Fatalln("🔴 [ERROR] Could not get Remote Address", err)
 		}
@@ -69,7 +69,8 @@ func main() {
 		figlet4go.ColorCyan,
 	}
 	renderStr, _ := ascii.RenderOpts("whatip", renderOpts)
-	fmt.Print(renderStr)
+	fmt.Println(renderStr)
+	fmt.Println("Version: 0.0.4")
 	fmt.Println("----------------")
 
 	// Write to console
