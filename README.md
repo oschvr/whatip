@@ -6,7 +6,7 @@ whatip is a simple ip resolver written in Go. Used in https://whatip.info
 ## Installation
 
 ```
-VERSION=0.0.1
+VERSION=0.1.0 
 OS=darwin
 ARCH=amd64
 
@@ -21,8 +21,10 @@ whatip
   \ V  V /  | | | | | (_| | | |_  | | | |_) |
    \_/\_/   |_| |_|  \__,_|  \__| |_| | .__/ 
                                       |_|    
+
+Version: 0.1.0 
 ----------------
-2022/04/25 22:35:33 🔵 [INFO] whatip running on port :8080
+2022/05/10 20:34:48 🔵 [INFO] whatip running on port :8080
 ```
 
 ## Contributing

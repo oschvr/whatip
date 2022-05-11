@@ -1,13 +1,19 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"log"
 	"net"
 	"net/http"
+	"os/exec"
 
 	"github.com/gorilla/mux"
 	"github.com/mbndr/figlet4go"
+)
+
+var (
+	VERSION string
 )
 
 func IPHandler(w http.ResponseWriter, r *http.Request) {
@@ -54,6 +60,17 @@ func HealthHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("OK"))
 }
 
+func getVersion() string {
+	e := exec.Command("make", "version")
+	var out bytes.Buffer
+	e.Stdout = &out
+	err := e.Run()
+	if err != nil {
+		log.Fatalln("🔴 [ERROR] Could not version", err)
+	}
+	return out.String()
+}
+
 func main() {
 
 	// Create router
@@ -70,7 +87,12 @@ func main() {
 	}
 	renderStr, _ := ascii.RenderOpts("whatip", renderOpts)
 	fmt.Println(renderStr)
-	fmt.Println("Version: 0.0.4")
+
+	// Print version
+	if VERSION == "" {
+		VERSION = "development"
+	}
+	fmt.Printf("Version: %s \n", VERSION)
 	fmt.Println("----------------")
 
 	// Write to console
